@@ -1,0 +1,12 @@
+{
+    "window.zoomLevel": 0,
+    "files.autoSave": "afterDelay",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "eslint.codeAction.showDocumentation": {
+    
+    },
+    "editor.tabSize": 2
+}

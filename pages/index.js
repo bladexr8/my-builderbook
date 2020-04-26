@@ -20,6 +20,7 @@
 /* Material UI Integration (Server vs. Client)
 
 Next.js Integration Official Example - https://github.com/mui-org/material-ui/tree/master/examples/nextjs
+Server vs. Client Rendering - https://medium.com/@adamzerner/client-side-rendering-vs-server-side-rendering-a32d2cf3bfcc
 
 The problem we are solving is rendering Material UI Style(s) Server side with next.js for the initial page load
 and then removing them once the client code injects the styles on the browser.

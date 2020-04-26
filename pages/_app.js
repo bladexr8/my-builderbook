@@ -46,7 +46,7 @@ class MyApp extends App {
   // render the Component
   render() {
     // eslint-disable-next-line no-console
-    console.log('[INFO][_app.js] this.props = ', this.props);
+    // console.log('[INFO][_app.js] this.props = ', this.props);
     const { Component, pageProps } = this.props;
     return (
       <ThemeProvider theme={theme}>

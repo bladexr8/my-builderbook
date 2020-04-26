@@ -11,10 +11,23 @@
 // Import modules
 const express = require('express');
 const next = require('next');
+const mongoose = require('mongoose');
+
+require('dotenv').config();
 
 // app port and root url
 const port = process.env.PORT || 8000;
 const ROOT_URL = `http://localhost:${port}`;
+
+// MongoDB Connection
+const MONGO_URL = process.env.MONGO_URL_TEST;
+const mongoOptions = {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+};
+mongoose.connect(MONGO_URL, mongoOptions);
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });

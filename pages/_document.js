@@ -8,7 +8,7 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 
 // master page elements
-export default class MyDocument extends Document {
+class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
@@ -17,7 +17,7 @@ export default class MyDocument extends Document {
           {/******  1. metadata ******/}
 
           {/* tell browser that content is UTF-8 encode */}
-          <meta charset="utf-8" />
+          <meta charSet="utf-8" />
 
           {/* sets page width to screen width, sets initial zoom */}
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -84,7 +84,7 @@ export default class MyDocument extends Document {
           `}
           </style>
         </Head>
-        <body style={{ 
+        <body style={{
           /* styles for body */
           font: '16px Muli',
           color: '#222',

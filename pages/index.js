@@ -10,9 +10,10 @@
 // Reference Article re: stateless functional components
 // https://hackernoon.com/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc
 
+// Note that this page is wrapped by the next.js App Higher Order Component (_app.js) by default
+
 // page imports
 import Head from 'next/head';
-import Header from '../components/Header';
 
 const Index = () => (
   <div style={{ padding: '10px 45px' }}>
@@ -20,7 +21,6 @@ const Index = () => (
       <title>Index Page</title>
       <meta name="description" content="This is the default application page" />
     </Head>
-    <Header />
     <p>Content on the Index Page</p>
   </div>
 );

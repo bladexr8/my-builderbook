@@ -1,15 +1,14 @@
-/*****************************************************************
+/* ****************************************************************
  * Name: SharedStyles.js
  * Description: Shared Styles for application components
  * Author: Stephen Moss
  * Date: 26/04/2020
- *****************************************************************/
+ **************************************************************** */
 
 const styleBigAvatar = {
   width: '80px',
   height: '80px',
   margin: '0px auto 15px',
-
 };
 
 const styleRaisedButton = {

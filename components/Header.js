@@ -27,8 +27,23 @@ import Avatar from '@material-ui/core/Avatar';
 
 import PropTypes from 'prop-types';
 
+// Dropdown Menu Component
+import MenuDrop from './MenuDrop';
+
 // Shared Component Styles
 import { styleToolbar } from './SharedStyles';
+
+// Menu Options
+const optionsMenu = [
+  {
+    text: 'Got question?',
+    href: 'https://github.com/builderbook/builderbook/issues',
+  },
+  {
+    text: 'Log Out',
+    href: '/logout',
+  },
+];
 
 const Header = ({ user }) => (
   <div>
@@ -56,11 +71,9 @@ const Header = ({ user }) => (
         <Grid item sm={1} xs={3} style={{ textAlign: 'right' }}>
           {user ? (
             <div style={{ whiteSpace: 'nowrap' }}>
-              <Avatar
-                src={user.avatarUrl}
-                alt={user.displayName}
-                style={{ margin: '0px auto 0px 20px' }}
-              />
+              {user.avatarUrl ? (
+                <MenuDrop options={optionsMenu} src={user.avatarUrl} alt={user.displayName} />
+              ) : null}
             </div>
           ) : (
             <Link href="/login">

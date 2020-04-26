@@ -1,10 +1,10 @@
-/*****************************************************************
+/* ****************************************************************
  * Name: _app.js
  * Description: Default Application Layout for next.js
  *              (refer reference below)
  * Author: Stephen Moss
  * Date: 26/04/2020
- *****************************************************************/
+ **************************************************************** */
 
 /* Reference Information
 
@@ -21,12 +21,11 @@ support server side style rendering (refer to index.js)
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import React from 'react';
-import App from 'next/App';
+import App from 'next/app';
 import { theme } from '../lib/theme';
 import Header from '../components/Header';
 
 class MyApp extends App {
-
   // peform any data loading required by page
   static async getInitialProps({ Component, ctx }) {
     const pageProps = {};
@@ -46,6 +45,8 @@ class MyApp extends App {
 
   // render the Component
   render() {
+    // eslint-disable-next-line no-console
+    console.log('[INFO][_app.js] this.props = ', this.props);
     const { Component, pageProps } = this.props;
     return (
       <ThemeProvider theme={theme}>
@@ -56,7 +57,9 @@ class MyApp extends App {
             consistent, and simple baseline 
         to build upon */}
         <CssBaseline />
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Header {...pageProps} />
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Component {...pageProps} />
       </ThemeProvider>
     );

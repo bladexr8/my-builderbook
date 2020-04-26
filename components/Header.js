@@ -1,6 +1,6 @@
 /*****************************************************************
- * Name: index.js
- * Description: application entry page for next.js. Note that this
+ * Name: Header.js
+ * Description: Default Application Header. Note that this
  *              is written as a stateless functional component
  *              (refer reference below)
  * Author: Stephen Moss
@@ -10,19 +10,14 @@
 // Reference Article re: stateless functional components
 // https://hackernoon.com/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc
 
-// page imports
-import Head from 'next/head';
-import Header from '../components/Header';
+import Link from 'next/Link';
 
-const Index = () => (
-  <div style={{ padding: '10px 45px' }}>
-    <Head>
-      <title>Index Page</title>
-      <meta name="description" content="This is the default application page" />
-    </Head>
-    <Header />
-    <p>Content on the Index Page</p>
+const Header = () => (
+  <div>
+    <Link href="/login">
+      <a style={{ margin: '0px 20px 0px auto'}}>Log In</a>
+    </Link>
   </div>
 );
 
-export default Index;
+export default Header;

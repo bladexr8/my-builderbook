@@ -13,6 +13,8 @@ const express = require('express');
 const next = require('next');
 const mongoose = require('mongoose');
 
+const User = require('./models/User');
+
 require('dotenv').config();
 
 // app port and root url
@@ -39,8 +41,9 @@ app.prepare().then(() => {
 
   // temp handler to pass in user
   // info for pages
-  server.get('/', (req, res) => {
-    const user = { email: 'team@builderbook.org' };
+  server.get('/', async (req, res) => {
+    // const user = { email: 'team@builderbook.org' };
+    const user = await User.findOne({ slug: 'team-builder-book' });
     app.render(req, res, '/', { user });
   });
 

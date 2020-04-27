@@ -5,11 +5,11 @@
  * Date: 27/04/2020
  * *************************************************************** */
 
- const passport = require('passport');
- const Strategy = require('passport-google-oauth').OAuth2Strategy;
- const User = require('./models/User');
+const passport = require('passport');
+const Strategy = require('passport-google-oauth').OAuth2Strategy;
+const User = require('./models/User');
 
- function auth({ ROOT_URL, server }) {
+function auth({ ROOT_URL, server }) {
   passport.use(
     new Strategy(
       // 1. define 'verify' function: get profile and googleToken from Google AND
@@ -17,7 +17,7 @@
       {
         clientID: process.env.Google_clientID,
         clientSecret: process.env.Google_clientSecret,
-        callbackURL: `${ROOT_URL}/auth/google/callback`
+        callbackURL: `${ROOT_URL}/auth/google/callback`,
       },
       verify,
     ),
@@ -30,6 +30,6 @@
   // save session to keep user logged in (via browser cookie)
 
   // Express routes
- }
+}
 
- module.exports = auth;
+module.exports = auth;

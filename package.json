@@ -6,7 +6,8 @@
     "dev": "nodemon server/app.js --watch server",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint components pages lib server"
+    "lint": "eslint components pages lib server",
+    "test": "jest"
   },
   "dependencies": {
     "@material-ui/core": "4.8.0",

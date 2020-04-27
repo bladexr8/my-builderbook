@@ -22,8 +22,15 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import React from 'react';
 import App from 'next/app';
+import Router from 'next/router';
+import NProgress from 'nprogress';
 import { theme } from '../lib/theme';
 import Header from '../components/Header';
+
+// hook NProgress into Router lifecycle
+Router.onRouteChangeStart = () => NProgress.start();
+Router.onRouteChangeComplete = () => NProgress.done();
+Router.onRouteChangeError = () => NProgress.done();
 
 class MyApp extends App {
   // peform any data loading required by page

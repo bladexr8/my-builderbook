@@ -1,9 +1,9 @@
-/*****************************************************************
+/* ****************************************************************
  * Name: _document.js
  * Description: master page elements for pages served by next.js
  * Author: Stephen Moss
  * Date: 26/04/2020
- *****************************************************************/
+ **************************************************************** */
 
 import React from 'react';
 import Document, { Head, Html, Main, NextScript } from 'next/document';
@@ -16,7 +16,7 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
 
-          {/******  1. metadata ******/}
+          {/* *****  1. metadata ***** */}
 
           {/* tell browser that content is UTF-8 encode */}
           <meta charSet="utf-8" />
@@ -31,7 +31,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content="#1976D2" />
 
 
-          {/******  2. static resources (from CDN) ******/}
+          {/* *****  2. static resources (from CDN) ***** */}
 
           <link
             rel="shortcut icon"
@@ -52,7 +52,7 @@ class MyDocument extends Document {
           <link rel="stylesheet" href="https://storage.googleapis.com/builderbook/vs.min.css" />
 
 
-          {/******  3. global styles ******/}
+          {/* *****  3. global styles ***** */}
           <style>
             {`
             a, a:focus {

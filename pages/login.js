@@ -21,7 +21,7 @@ const Login = () => (
     </Head>
     <br />
     <p style={{ margin: '45px auto', fontSize: '44px', fontWeight: '400' }}>Log In</p>
-    <p>You will be logged in for 4 days unless you log out manually.</p>
+    <p>You will be logged in for 14 days unless you log out manually.</p>
     <br />
     <Button variant="contained" style={styleLoginButton} href="/auth/google">
       <img

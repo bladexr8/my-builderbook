@@ -10,6 +10,7 @@
 const passport = require('passport');
 const Strategy = require('passport-google-oauth').OAuth2Strategy;
 const User = require('./models/User');
+const logger = require('./logs');
 
 function auth({ ROOT_URL, server }) {
   // passport verify callback
@@ -22,9 +23,8 @@ function auth({ ROOT_URL, server }) {
     let email;
     let avatarUrl;
 
-    // eslint-disable-next-line no-console
-    console.log(
-      `[INFO][google.js][verify] Access Token: ${accessToken}, Refresh Token: ${refreshToken}`,
+    logger.debug(
+      `[google.js][verify] Access Token: ${accessToken}, Refresh Token: ${refreshToken}`,
     );
 
     // get first email address
@@ -48,12 +48,13 @@ function auth({ ROOT_URL, server }) {
         avatarUrl,
       });
       // user verified successfully, execute callback
-      // eslint-disable-next-line no-console
-      console.log(`[INFO][google.js][signIn] User: ${JSON.stringify(user)}`);
+      logger.debug('User Sign In/Sign Up Success!');
+      logger.debug(`[google.js][signIn] User: ${JSON.stringify(user)}`);
       verified(null, user);
     } catch (err) {
       verified(err);
-      console.log(err); // eslint-disable-line
+      logger.error('*** ERROR Signing In/Signing Up User');
+      logger.error(err);
     }
   };
 

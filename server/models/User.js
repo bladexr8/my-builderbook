@@ -14,6 +14,7 @@
 const mongoose = require('mongoose');
 const _ = require('lodash');
 const generateSlug = require('../utils/slugify');
+const logger = require('../logs');
 
 const { Schema } = mongoose;
 
@@ -71,8 +72,7 @@ class UserClass {
   static async signInOrSignUp({ googleId, email, googleToken, displayName, avatarUrl }) {
     const user = await this.findOne({ googleId }).select(UserClass.publicFields().join(' '));
 
-    // eslint-disable-next-line no-console
-    console.log(`[INFO][User.js][signIn] Google Token: ${JSON.stringify(googleToken)}`);
+    logger.debug(`[User.js][signIn] Google Token: ${JSON.stringify(googleToken)}`);
     // if user is found
     if (user) {
       const modifier = {};
@@ -100,10 +100,8 @@ class UserClass {
     const slug = await generateSlug(this, displayName);
     const userCount = await this.find().countDocuments();
 
-    // eslint-disable-next-line no-console
-    console.log(`[INFO][User.js] Creating User...`);
-    // eslint-disable-next-line no-console
-    console.log(`[INFO][User.js] Google Token: ${JSON.stringify(googleToken)}`);
+    logger.debug(`[User.js] Creating User...`);
+    logger.debug(`[User.js] Google Token: ${JSON.stringify(googleToken)}`);
     const newUser = await this.create({
       createdAt: new Date(),
       googleId,

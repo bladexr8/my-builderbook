@@ -17,7 +17,9 @@ const next = require('next');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const mongoSessionStore = require('connect-mongo');
+const logger = require('./logs');
 
+// Google Auth Support
 const auth = require('./google');
 
 require('dotenv').config();
@@ -75,6 +77,6 @@ app.prepare().then(() => {
   // listen for connections
   server.listen(port, (err) => {
     if (err) throw err;
-    console.log(`[INFO] Ready on ${ROOT_URL} port ${port}:`); // eslint-disable-line no-console
+    logger.info(`Ready on ${ROOT_URL} port ${port}:`);
   });
 });

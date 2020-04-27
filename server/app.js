@@ -18,7 +18,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const mongoSessionStore = require('connect-mongo');
 
-const User = require('./models/User');
+const auth = require('./google');
 
 require('dotenv').config();
 
@@ -65,23 +65,9 @@ app.prepare().then(() => {
 
   server.use(session(sess));
 
-  // temp handler to pass in user
-  // info for pages
-  server.get('/', async (req, res) => {
-    // test value for session
-    req.session.foo = 'bar';
-
-    // const user = { email: 'team@builderbook.org' };
-    // const user = await User.findOne({ slug: 'team-builder-book' });
-
-    // look up user in MongoDB. Once found, place in "req.user"
-    // property where it will be picked up by withAuth component
-    // and passed to app pages as a prop
-    User.findOne({ slug: 'team-builder-book' }).then((user) => {
-      req.user = user;
-      app.render(req, res, '/');
-    });
-  });
+  // set up Google Authentication
+  // (refer to google.js)
+  auth({ server, ROOT_URL });
 
   // Next handler
   server.get('*', (req, res) => handle(req, res));

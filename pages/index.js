@@ -1,8 +1,8 @@
 /* ****************************************************************
  * Name: index.js
  * Description: application entry page for next.js. Note that this
- *              is written as a stateless functional component
- *              (refer reference below)
+ *              was written as a stateless functional component
+ *              (refer reference below) until Chapter 03
  * Author: Stephen Moss
  * Date: 26/04/2020
  **************************************************************** */
@@ -42,41 +42,47 @@ Three Steps are required:
 */
 
 // page imports
+import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import withAuth from '../lib/withAuth';
 
-// Index Page Component
-const Index = ({ user }) => (
-  <div style={{ padding: '10px 45px' }}>
-    <Head>
-      <title>Index Page</title>
-      <meta name="description" content="This is the default application page" />
-    </Head>
-    <p>Content on the Index Page</p>
-    <p>
-      Email:
-      {user.email}
-    </p>
-  </div>
-);
+class Index extends React.Component {
+  // Props Validation
+  static propTypes = {
+    user: PropTypes.shape({
+      displayName: PropTypes.string,
+      email: PropTypes.string.isRequired,
+    })
+  };
 
-// getInitialProps - this is passed to App Component (_app.js)
-// ctx.query.user is passed in from Express Route. This populates
-// the "user" prop for the Index page. Finally, the server
-// through (_app.js) returns a rendered page with data to the
-// at the "/" route
-Index.getInitialProps = async (ctx) => ({ user: ctx.query.user });
+  // Default Props
+  static defaultProps = {
+    user: null,
+  };
 
-// Props Validation
-Index.propTypes = {
-  user: PropTypes.shape({
-    email: PropTypes.string.isRequired,
-  }),
-};
+  render() {
+    // passed in from withAuth component
+    // console.log('[INFO] index.js props - ', this.props);
+    const { user } = this.props;
+    return (
+      <div style={{ padding: '10px 45px' }}>
+        <Head>
+          <title>Dashboard</title>
+          <meta name="description" content="List of purchased books" />
+        </Head>
+        <p>Dashboard </p>
+        <p>Email: {user.email}</p>
+      </div>
+    )
+  }
+}
 
-// Default Props
-Index.defaultProps = {
-  user: null,
-};
-
-export default Index;
+// this in effect, wraps the
+// Index Page with the
+// "withAuth" component
+// Note: is also wrapped by
+// _app.js "App" component
+// by next.js automatically
+// as well
+export default withAuth(Index);

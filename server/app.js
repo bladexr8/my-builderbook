@@ -70,9 +70,17 @@ app.prepare().then(() => {
   server.get('/', async (req, res) => {
     // test value for session
     req.session.foo = 'bar';
+
     // const user = { email: 'team@builderbook.org' };
-    const user = await User.findOne({ slug: 'team-builder-book' });
-    app.render(req, res, '/', { user });
+    // const user = await User.findOne({ slug: 'team-builder-book' });
+
+    // look up user in MongoDB. Once found, place in "req.user"
+    // property where it will be picked up by withAuth component
+    // and passed to app pages as a prop
+    User.findOne({ slug: 'team-builder-book' }).then((user) => {
+      req.user = user;
+      app.render(req, res, '/');
+    });
   });
 
   // Next handler

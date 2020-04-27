@@ -18,6 +18,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const mongoSessionStore = require('connect-mongo');
 const logger = require('./logs');
+const { insertTemplates } = require('./models/EmailTemplate');
 
 // Google Auth Support
 const auth = require('./google');
@@ -43,11 +44,14 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 // initialise Next Server
-app.prepare().then(() => {
+logger.info('Starting Application...');
+app.prepare().then(async () => {
+  logger.info('Initialising Express Server...');
   const server = express();
 
   // Set up Express Sessions
   // and MongoDB Session store
+  logger.info('Initialising MongoDB Session Store...');
   const MongoStore = mongoSessionStore(session);
 
   const sess = {
@@ -67,11 +71,18 @@ app.prepare().then(() => {
 
   server.use(session(sess));
 
+  // insert email templates
+  // into database
+  logger.info('Initialising App Email Templates...');
+  await insertTemplates();
+
   // set up Google Authentication
   // (refer to google.js)
+  logger.info('Initialising Google Authentication Module...');
   auth({ server, ROOT_URL });
 
   // Next handler
+  logger.info('Initialising Next.js Request Handler...');
   server.get('*', (req, res) => handle(req, res));
 
   // listen for connections

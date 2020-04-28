@@ -26,6 +26,7 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import { theme } from '../lib/theme';
 import Header from '../components/Header';
+import Notifier from '../components/Notifier';
 
 // hook NProgress into Router lifecycle
 Router.onRouteChangeStart = () => NProgress.start();
@@ -68,6 +69,7 @@ class MyApp extends App {
         <Header {...pageProps} />
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Component {...pageProps} />
+        <Notifier />
       </ThemeProvider>
     );
   }

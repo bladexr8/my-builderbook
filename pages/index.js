@@ -45,7 +45,9 @@ Three Steps are required:
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import Button from '@material-ui/core/Button';
 import withAuth from '../lib/withAuth';
+import notify from '../lib/notifier';
 
 class Index extends React.Component {
   // Props Validation
@@ -53,7 +55,7 @@ class Index extends React.Component {
     user: PropTypes.shape({
       displayName: PropTypes.string,
       email: PropTypes.string.isRequired,
-    })
+    }),
   };
 
   // Default Props
@@ -72,9 +74,15 @@ class Index extends React.Component {
           <meta name="description" content="List of purchased books" />
         </Head>
         <p>Dashboard </p>
-        <p>Email: {user.email}</p>
+        <p>
+          Email:
+          {user.email}
+        </p>
+        <Button variant="contained" onClick={() => notify('success message')}>
+          Click me to test notify()
+        </Button>
       </div>
-    )
+    );
   }
 }
 

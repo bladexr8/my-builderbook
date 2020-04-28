@@ -31,6 +31,7 @@ const EmailTemplate = mongoose.model('EmailTemplate', mongoSchema);
 
 // get an email template
 async function getEmailTemplate(name, params) {
+  logger.debug(`Getting Email Template ${name} (${params})`);
   const source = await EmailTemplate.findOne({ name });
   if (!source) {
     throw new Error(`No EmailTemplates found.

@@ -62,7 +62,7 @@ const mongoSchema = new Schema({
   },
 });
 
-// add class methods to Model
+// add static class methods to Model
 class UserClass {
   static publicFields() {
     return ['id', 'displayName', 'email', 'avatarUrl', 'slug', 'isAdmin', 'isGithubConnected'];

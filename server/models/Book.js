@@ -49,7 +49,7 @@ const mongoSchema = new Schema({
 // static methods
 class BookClass {
   // get a list of books
-  static async list({ offset = 0, limit = 10 }) {
+  static async list({ offset = 0, limit = 10 } = {}) {
     logger.debug('Executing BookClass.List...');
     const books = await this.find({})
       .sort({ createdAt: -1 }) // most recent to least recent

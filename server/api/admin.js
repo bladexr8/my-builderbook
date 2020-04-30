@@ -27,8 +27,8 @@ router.get('/books', async (req, res) => {
   logger.debug('Executing GET /books');
   try {
     logger.debug('Getting Books from Database...');
-    // const books = await Book.list();
-    const books = [{
+    const books = await Book.list();
+    /* const books = [{
         name: 'dummy-1',
         slug: 'dummy-1',
         price: 49,
@@ -40,7 +40,7 @@ router.get('/books', async (req, res) => {
         price: 49,
         createdAt: '2017-11-21T23:39:18.426+00:00',
       },
-    ];
+    ]; */
     logger.debug('books = ', books);
     res.json(books);
   } catch (err) {

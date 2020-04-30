@@ -54,9 +54,9 @@ class IndexWithData extends React.Component {
   // load the books data
   async componentDidMount() {
     try {
-      let books = {};
+      // let books = {};
       console.log('Requesting Books from API...');
-      books = await getBookList();
+      const { books } = await getBookList();
       console.log('Received Books: ', { books });
       this.setState({ books });
       console.log('Page State = ', this.state);

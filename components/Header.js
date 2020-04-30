@@ -59,14 +59,14 @@ const Header = ({ user }) => (
               </Hidden>
             </div>
           ) : (
-              <Link href="/">
-                <Avatar
-                  src="https://storage.googleapis.com/builderbook/logo.svg"
-                  alt="Builder Book Logo"
-                  style={{ margin: '0px auto 0px 20px', cursor: 'pointer' }}
-                />
-              </Link>
-            )}
+            <Link href="/">
+              <Avatar
+                src="https://storage.googleapis.com/builderbook/logo.svg"
+                alt="Builder Book Logo"
+                style={{ margin: '0px auto 0px 20px', cursor: 'pointer' }}
+              />
+            </Link>
+          )}
         </Grid>
         <Grid item sm={1} xs={3} style={{ textAlign: 'right' }}>
           {user ? (
@@ -76,10 +76,10 @@ const Header = ({ user }) => (
               ) : null}
             </div>
           ) : (
-              <Link href="/login">
-                <a style={{ margin: '0px 20px 0px auto' }}>Log In</a>
-              </Link>
-            )}
+            <Link href="/public/login" as="/login">
+              <a style={{ margin: '0px 20px 0px auto' }}>Log In</a>
+            </Link>
+          )}
         </Grid>
       </Grid>
     </Toolbar>

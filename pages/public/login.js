@@ -8,10 +8,10 @@
  **************************************************************** */
 
 import Head from 'next/head';
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
 
-import withAuth from '../lib/withAuth';
-import { styleLoginButton } from '../components/SharedStyles';
+import withAuth from '../../lib/withAuth';
+import { styleLoginButton } from '../../components/SharedStyles';
 
 const Login = () => (
   <div style={{ textAlign: 'center', margin: '0 20px' }}>
@@ -27,7 +27,7 @@ const Login = () => (
       <img
         src="https://storage.googleapis.com/builderbook/G.svg"
         alt="Log in with Google"
-        style={{ marginRight: '10px '}}
+        style={{ marginRight: '10px ' }}
       />
       Log In with Google
     </Button>

@@ -15,6 +15,8 @@ const mongoose = require('mongoose');
 const generateSlug = require('../utils/slugify');
 const Chapter = require('./Chapter');
 
+const logger = require('../logs');
+
 const { Schema } = mongoose;
 
 const mongoSchema = new Schema({
@@ -48,10 +50,12 @@ const mongoSchema = new Schema({
 class BookClass {
   // get a list of books
   static async list({ offset = 0, limit = 10 }) {
+    logger.debug('Executing BookClass.List...');
     const books = await this.find({})
       .sort({ createdAt: -1 }) // most recent to least recent
       .skip(offset) // support pagination
       .limit(limit);
+    logger.debug('Books List From DB = ', books);
     return { books };
   }
 

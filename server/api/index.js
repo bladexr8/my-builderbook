@@ -9,7 +9,10 @@ const publicApi = require('./public');
 const customerApi = require('./customer');
 const adminApi = require('./admin');
 
+const logger = require('../logs');
+
 function api(server) {
+  logger.info('Setting Up Internal API Routes...');
   server.use('/api/v1/public', publicApi);
   server.use('/api/v1/customer', customerApi);
   server.use('/api/v1/admin', adminApi);

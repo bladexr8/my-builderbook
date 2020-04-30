@@ -17,6 +17,8 @@ const next = require('next');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const mongoSessionStore = require('connect-mongo');
+
+const api = require('./api');
 const logger = require('./logs');
 const { insertTemplates } = require('./models/EmailTemplate');
 
@@ -42,6 +44,11 @@ mongoose.connect(MONGO_URL, mongoOptions);
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
+
+// URL Map
+const URL_MAP = {
+  '/login': '/public/login',
+};
 
 // initialise Next Server
 logger.info('Starting Application...');
@@ -81,9 +88,20 @@ app.prepare().then(async () => {
   logger.info('Initialising Google Authentication Module...');
   auth({ server, ROOT_URL });
 
+  // set up Internal API's for Client
+  api(server);
+
   // Next handler
   logger.info('Initialising Next.js Request Handler...');
-  server.get('*', (req, res) => handle(req, res));
+  server.get('*', (req, res) => {
+    // logger.debug(`Mapping ${req.path} to ${URL_MAP[req.path]}`);
+    const url = URL_MAP[req.path];
+    if (url) {
+      app.render(req, res, url);
+    } else {
+      handle(req, res);
+    }
+  });
 
   // listen for connections
   server.listen(port, (err) => {

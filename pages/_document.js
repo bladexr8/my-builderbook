@@ -41,10 +41,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Muli:300,400:latin"
           />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
           <link
             rel="stylesheet"
             href="https://storage.googleapis.com/builderbook/nprogress.min.css"
@@ -86,20 +83,20 @@ class MyDocument extends Document {
           `}
           </style>
         </Head>
-        <body style={{
-          /* styles for body */
-          font: '16px Muli',
-          color: '#222',
-          margin: '0px auto',
-          fontWeight: '300',
-          lineHeight: '1.5em',
-          backgroundColor: '#F7F9FC',
-        }}>
-
+        <body
+          style={{
+            /* styles for body */
+            font: '16px Muli',
+            color: '#222',
+            margin: '0px auto',
+            fontWeight: '300',
+            lineHeight: '1.5em',
+            backgroundColor: '#F7F9FC',
+          }}
+        >
           <Main />
 
           <NextScript />
-
         </body>
       </Html>
     );

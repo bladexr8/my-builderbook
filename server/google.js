@@ -112,7 +112,8 @@ function auth({ ROOT_URL, server }) {
       failureRedirect: '/login',
     }),
     (req, res) => {
-      res.redirect('/');
+      logger.debug('Redirecting to /admin...');
+      res.redirect('/admin');
     },
   );
 

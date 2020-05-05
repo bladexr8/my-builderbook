@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* ****************************************************************
  * Name: Book.js
  * Description: Book model for MongoDB
@@ -13,7 +14,8 @@
 
 const mongoose = require('mongoose');
 const generateSlug = require('../utils/slugify');
-const Chapter = require('./Chapter');
+
+// Chapter imported at end of file to avoid circular dependency
 
 const logger = require('../logs');
 
@@ -121,3 +123,5 @@ mongoSchema.loadClass(BookClass);
 const Book = mongoose.model('Book', mongoSchema);
 
 module.exports = Book;
+
+const Chapter = require('./Chapter');

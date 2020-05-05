@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* ****************************************************************
  * Name: Chapter.js
  * Description: Chapter model for MongoDB
@@ -13,9 +14,9 @@
 
 const mongoose = require('mongoose');
 
-const Book = require('./Book');
-
 const { Schema } = mongoose;
+
+// Book imported at end of file to avoid circular dependency
 
 const mongoSchema = new Schema({
   bookId: {
@@ -86,7 +87,7 @@ class ChapterClass {
     const chapter = await this.findOne({ bookId: book._id, slug: chapterSlug });
 
     if (!chapter) {
-      throw new Error('Chapter Not dound!');
+      throw new Error('Chapter Not found!');
     }
 
     const chapterObj = chapter.toObject();
@@ -105,3 +106,5 @@ mongoSchema.loadClass(ChapterClass);
 const Chapter = mongoose.model('Chapter', mongoSchema);
 
 module.exports = Chapter;
+
+const Book = require('./Book');

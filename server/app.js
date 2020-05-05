@@ -91,6 +91,14 @@ app.prepare().then(async () => {
   // set up Internal API's for Client
   api(server);
 
+  // display a chapter
+  // Express receives bookSlug & chapterSlug from app user's browser and then
+  // sends them to the /public/read-chapter page and renders it
+  server.get('/books/:bookSlug/:chapterSlug', (req, res) => {
+    const { bookSlug, chapterSlug } = req.params;
+    app.render(req, res, '/public/read-chapter', { bookSlug, chapterSlug });
+  });
+
   // Next handler
   logger.info('Initialising Next.js Request Handler...');
   server.get('*', (req, res) => {

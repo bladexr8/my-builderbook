@@ -96,6 +96,7 @@ app.prepare().then(async () => {
   // sends them to the /public/read-chapter page and renders it
   server.get('/books/:bookSlug/:chapterSlug', (req, res) => {
     const { bookSlug, chapterSlug } = req.params;
+    // call Next.js route
     app.render(req, res, '/public/read-chapter', { bookSlug, chapterSlug });
   });
 
